@@ -24,7 +24,7 @@ SCOPE = [
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CREDS_PATH = os.path.join(BASE_DIR, "creds.json")
 
-creds_dict = json.loads(st.secrets["GOOGLE_CREDS_JSON"])
+creds_dict = st.secrets["GOOGLE_CREDS_JSON"]
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPE)
 gsheet_client = gspread.authorize(credentials)
 sheet = gsheet_client.open("Fintech Outbound CRM").sheet1
