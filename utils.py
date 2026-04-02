@@ -11,7 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 MODEL = "llama-3.3-70b-versatile"
 
 groq_client = Groq(api_key=GROQ_API_KEY)
@@ -24,7 +24,7 @@ SCOPE = [
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CREDS_PATH = os.path.join(BASE_DIR, "creds.json")
 
-creds_dict = json.loads(os.getenv("GOOGLE_CREDS_JSON"))
+creds_dict = json.loads(st.secrets["GOOGLE_CREDS_JSON"])
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPE)
 gsheet_client = gspread.authorize(credentials)
 sheet = gsheet_client.open("Fintech Outbound CRM").sheet1
